@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "367014337125",
+    "project_id": "dashboard-ddc72",
+    "storage_bucket": "dashboard-ddc72.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:367014337125:android:b6d0a8b12a337d17e6c48c",
+        "android_client_info": {
+          "package_name": "com.dashboard.dashboard"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDwksUv-PnoOtEM_Oq4PCgWJuzHZDwWvaQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

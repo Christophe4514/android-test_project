@@ -1,0 +1,513 @@
+/*import 'package:flutter/material.dart';
+//import 'package:charts_flutter/flutter.dart' as charts;
+import 'package:dashboard/chart_container.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'FL Chart Tutorial',
+      //theme: ThemeData(
+       // primarySwatch: Colors.purple,
+      ),
+     // home: MyHomePage(title: 'FL Chart Tutorial'),
+    );
+  }
+}
+
+//class MyHomePage extends StatefulWidget {
+  //MyHomePage({Key? key, required this.title}) : super(key: key);
+
+  final String title;
+
+  @override
+  _MyHomePageState createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: AppBar(
+          title: Text(widget.title),
+        ),
+        body: Container(
+          color: Color(0xfff0f0f0),
+          child: ListView(
+            padding: EdgeInsets.fromLTRB(0, 30, 0, 30),
+            children: <Widget>[
+              ChartContainer(
+                title: 'Line Chart',
+                color: Color.fromRGBO(45, 108, 223, 1),
+                chart: LineChartContent(),
+              ),
+            ],
+          ),
+        ));
+  }
+}*/
+
+
+/*class BarChart extends StatelessWidget {
+  final Map<String, dynamic> data;
+
+  BarChart({required this.data});
+
+  @override
+  Widget build(BuildContext context) {
+    return charts.BarChart(
+      createSeriesList(),
+      animate: true,
+    );
+  }
+
+  List<charts.Series<MapEntry<String, dynamic>, String>> createSeriesList() {
+    final consommations = data['consommations_jour'] as Map<String, dynamic>;
+
+    return [
+      charts.Series<MapEntry<String, dynamic>, String>(
+        id: 'Consommations',
+        domainFn: (entry, _) => entry.key,
+        measureFn: (entry, _) => int.parse(entry.value.toString()),
+        labelAccessorFn: (entry, _) => entry.value.toString(),
+        insideLabelStyleAccessorFn: (entry, _) => const charts.TextStyleSpec(
+          fontSize: 12, // Taille de la police de caractères du texte
+          color: charts.MaterialPalette.black,
+        ),
+        data: consommations.entries.toList(),
+      )
+    ];
+  }
+}*/
+
+/*void main() {
+  Map<String, dynamic> data = {
+    "consommations_jour": {
+      "Friday": "24",
+      "Monday": "55",
+      "Saturday": "84",
+      "Sunday": "0",
+      "Thursday": "76",
+      "Tuesday": "113",
+      "Wed":"87",
+    }
+  };
+
+  runApp(MaterialApp(
+    home: Scaffold(
+      appBar: AppBar(
+        title: const Text('Graphique à barres'),
+      ),
+      body: Center(
+        child: Container(
+          height: 200,
+          width: 400,
+          child: BarChart(data: data),
+        ),
+      ),
+    ),
+  ));
+}*/
+
+
+/*class BarChart extends StatelessWidget {
+  final List<Map<String, dynamic>> data;
+
+  BarChart({required this.data});
+
+  @override
+  Widget build(BuildContext context) {
+    return charts.BarChart(
+      createSeriesList(),
+      animate: true,
+    );
+  }
+
+  List<charts.Series<Map<String, dynamic>, String>> createSeriesList() {
+    return [
+      charts.Series<Map<String, dynamic>, String>(
+        id: 'Consommations',
+        domainFn: (consommation, _) => consommation.keys.first,
+        measureFn: (consommation, _) =>
+            int.parse(consommation.values.first.toString()),
+        data: data,
+      )
+    ];
+  }
+}
+
+void main() {
+  List<Map<String, dynamic>> data = [
+    {"Lun": "3312"},
+    {"Mar": "8413"},
+    {"Mer": "1245"},
+    {"Jeu": "8636"},
+    {"Ven": "1224"},
+    {"Sam": "1084"},
+    {"Dim": "5"},
+  ];
+
+  runApp(MaterialApp(
+    home: Scaffold(
+      appBar: AppBar(
+        title: Text('Graphique à barres'),
+      ),
+      body: Center(
+        child: Container(
+          height: 200,
+          width: 420,
+          child: BarChart(data: data),
+        ),
+      ),
+    ),
+  ));
+}*/
+
+
+/*final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
+void main() {
+  List<Map<String, dynamic>> data = [
+    {
+      "Friday": 1226424,
+      "Monday": 33512,
+      "Saturday": 10384,
+      "Sunday": 0,
+      "Thursday": 86376,
+      "Tuesday": 86413
+    },
+    // Ajoutez les données pour les autres jours ici
+  ];
+  runApp(MaterialApp(
+    debugShowCheckedModeBanner: false,
+      home: ScatterPlotChart(data: data)
+    // home: Notificat(),
+    //MyWebView(url: 'https://muanatech.vercel.app/',),
+    //GraphiqueParams(),
+  ));
+}*/
+
+
+/*class ScatterPlotChart extends StatelessWidget {
+  final List<Map<String, dynamic>> data;
+
+  ScatterPlotChart({required this.data});
+
+  @override
+  Widget build(BuildContext context) {
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        return Container(
+          height: constraints.maxHeight,
+          width: constraints.maxWidth,
+          child: charts.ScatterPlotChart(
+            createSeriesList().cast<charts.Series<dynamic, num>>(),
+            animate: true,
+            domainAxis: charts.DateTimeAxisSpec(
+              tickFormatterSpec: charts.AutoDateTimeTickFormatterSpec(
+                day: charts.TimeFormatterSpec(format: 'dd/MM'),
+              ),
+            ),
+            primaryMeasureAxis: charts.NumericAxisSpec(
+              tickProviderSpec:
+              charts.BasicNumericTickProviderSpec(desiredTickCount: 5),
+            ),
+          ),
+        );
+      },
+    );
+  }
+
+  List<charts.Series<Map<String, dynamic>, DateTime>> createSeriesList() {
+    return [
+      charts.Series<Map<String, dynamic>, DateTime>(
+        id: 'Consommations',
+        domainFn: (consommation, _) =>
+            DateTime.parse(consommation.keys.first),
+        measureFn: (consommation, _) =>
+            int.parse(consommation.values.first.toString()),
+        data: data,
+      )
+    ];
+  }
+}*/
+
+/*
+class Dashboard extends StatelessWidget {
+  Dashboard({Key? key}) : super(key: key);
+
+  final TextEditingController usernameController = TextEditingController();
+  final passwordController = TextEditingController();
+
+  //sign user in methode
+  void signUserIn() {}
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: Scaffold(
+        backgroundColor: Colors.black,
+        body: SafeArea(
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const SizedBox(
+                  height: 50,
+                ),
+                //logo
+                Icon(
+                  Icons.lock,
+                  size: 100,
+                  color: Colors.white,
+                ),
+                const SizedBox(
+                  height: 50,
+                ),
+                //welcome text
+                Text(
+                  "Welcome on the mobile intelligent Loget",
+                  style: TextStyle(color: Colors.white38, fontSize: 16.0),
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                //userName textField
+                MyTextField(
+                    controller: usernameController,
+                    hitText: 'Username',
+                    obscureText: false),
+                const SizedBox(
+                  height: 20,
+                ),
+                //password textField
+                MyTextField(
+                    controller: passwordController,
+                    hitText: 'password',
+                    obscureText: true),
+                const SizedBox(
+                  height: 10,
+                ),
+                //forgot password
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Text(
+                        "Forgot Password ?",
+                        style: TextStyle(
+                          color: Colors.grey.shade100,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                //sign in button
+                MyBotton(
+                  onTap: signUserIn,
+                ),
+                const SizedBox(
+                  height: 50,
+                ),
+                //or continue with
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 25.0),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: Divider(
+                          thickness: 0.5,
+                          color: Colors.grey[400],
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 10.0),
+                        child: Text(
+                          "Or Continue With",
+                          style: TextStyle(color: Colors.white70),
+                        ),
+                      ),
+                      Expanded(
+                        child: Divider(
+                          thickness: 0.5,
+                          color: Colors.grey[400],
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+                const SizedBox(
+                  height: 50,
+                ),
+                //google + apple sign in
+                const Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    //google image
+                    ImageTile(imagePath: "assets/google.png"),
+                    const SizedBox(
+                      width: 10.0,
+                    ),
+                    //apple image
+                    ImageTile(imagePath: "assets/apple.png")
+                  ],
+                ),
+                const SizedBox(
+                  height: 50,
+                ),
+                //not a member? register now
+                const Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      "Not have a acount? ",
+                      style: TextStyle(color: Colors.white),
+                    ),
+                    SizedBox(
+                      width: 6.0,
+                    ),
+                    Text(
+                      "Register Now",
+                      style: TextStyle(
+                          color: Colors.orange,
+                          fontSize: 19.0,
+                          fontWeight: FontWeight.bold),
+                    )
+                  ],
+                )
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class GraphiqueParams extends StatefulWidget {
+  const GraphiqueParams({Key? key}) : super(key: key);
+
+  @override
+  State<GraphiqueParams> createState() => _GraphiqueParamsState();
+}
+*/
+
+/*class _GraphiqueParamsState extends State<GraphiqueParams> {
+  late List<ChartData> data;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    data = [
+      ChartData(0, 4873),
+      ChartData(1, 27436),
+      ChartData(2, 20343),
+      ChartData(3, 16543),
+      ChartData(4, 8542),
+      ChartData(5, 5675),
+      ChartData(6, 8224),
+      ChartData(7, 20343),
+      ChartData(8, 27436),
+      ChartData(10, 4420),
+      ChartData(12, 25432),
+      ChartData(15, 15634),
+      ChartData(19, 11324),
+      ChartData(21, 9547),
+      ChartData(23, 12543),
+      ChartData(27, 27999),
+      ChartData(29, 15674),
+    ];
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.black,
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          const Text(
+            "Parametres",
+            style: TextStyle(
+              color: Colors.red,
+              fontSize: 25,
+            ),
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+          Container(
+            height: MediaQuery.of(context).size.height/3,
+            width: MediaQuery.of(context).size.width,
+            child: Center(
+              child: SfCartesianChart(
+                margin: EdgeInsets.all(0),
+                borderWidth: 0,
+                borderColor: Colors.transparent,
+                plotAreaBorderWidth: 0,
+                primaryXAxis: NumericAxis(
+                  minimum: 0,
+                  maximum: 30,
+                  isVisible: false,
+                  interval: 1,
+                  borderWidth: 0,
+                  borderColor: Colors.transparent,
+                ),
+                primaryYAxis: NumericAxis(
+                  minimum: 3240,
+                  maximum: 28000,
+                  interval: 1000,
+                  isVisible: false,
+                  borderWidth: 0,
+                  borderColor: Colors.white,
+                ),
+                series: <ChartSeries<ChartData, int>>[
+                  SplineAreaSeries(
+                    dataSource: data,
+                    xValueMapper: (ChartData data, _) => data.day,
+                    yValueMapper: (ChartData data, _) => data.price,
+                    splineType: SplineType.natural,
+                    gradient: LinearGradient(
+                      colors: [Colors.orange, Colors.greenAccent],
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter,
+                    ),
+                  ),
+                  SplineSeries(dataSource: data,
+                    color: Colors.white,
+                    width: 4,
+                    markerSettings: MarkerSettings(
+                      color: Colors.white38,
+                      borderWidth: 4,
+                      borderColor: Colors.orange,
+                      isVisible: true,
+                      shape: DataMarkerType.triangle,
+                    ),
+                    xValueMapper: (ChartData data, _) => data.day,
+                    yValueMapper: (ChartData data, _) => data.price,)
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class ChartData {
+  int day = 0;
+  double price = 0;
+
+  ChartData(this.day, this.price);
+}*/
